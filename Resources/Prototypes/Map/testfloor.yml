@@ -1,2 +1,4 @@
 - type: entity
-  id: TestFloor
+  id: TestDungeonFloor
+  components:
+    - type: MapGrid

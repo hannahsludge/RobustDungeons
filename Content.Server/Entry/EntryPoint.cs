@@ -1,5 +1,6 @@
 
 using Content.Server.Map.Systems;
+using Robust.Server.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 
@@ -7,11 +8,9 @@ namespace Content.Server.Entry
 {
     public sealed class EntryPoint : GameClient {
 
-        [Dependency] private readonly IComponentFactory _componentFactory = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly MapGenSystem _mapgen = default!;
+        [Dependency] private readonly IComponentFactory componentFactory = default!;
+        [Dependency] private readonly MapGenSystem mapgen = default!;
         [Dependency] IEntityManager entityManager = default!;
-
         public override void PreInit()
         {
             
@@ -21,14 +20,14 @@ namespace Content.Server.Entry
         {
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
-            _componentFactory.DoAutoRegistrations();  
-            _componentFactory.GenerateNetIds(); 
+            componentFactory.DoAutoRegistrations();  
+            componentFactory.GenerateNetIds(); 
         }
-        static readonly EntProtoId testFloor = "TestFloor";
         public override void PostInit()
         {
-            _mapgen.GenerateFloor(_protoManager.Index(testFloor));
-
+            
+            
         }
+
     }
 }

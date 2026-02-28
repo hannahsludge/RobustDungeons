@@ -1,5 +1,6 @@
 
 using Robust.Shared.ContentPack;
+using Robust.Shared.Map.Components;
 
 namespace Content.Client.Entry
 { 
@@ -12,6 +13,11 @@ namespace Content.Client.Entry
             Dependencies.InjectDependencies(this);
             _componentFactory.DoAutoRegistrations();  
             _componentFactory.GenerateNetIds(); 
+            
+        }
+        public override void PostInit()
+        {
+            base.PostInit();
         }
     }
 
